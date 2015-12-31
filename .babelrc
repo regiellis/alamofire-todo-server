@@ -1,0 +1,4 @@
+{
+  "presets": ["es2015-node5"],
+  "plugins": ["check-es2015-constants", "transform-es2015-block-scoping"]
+}

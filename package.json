@@ -1,0 +1,35 @@
+{
+  "name": "alamofire-node-server",
+  "private": true,
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "build": "gulp compile",
+    "doc": "jsdoc -r server/*.js -d doc/",
+    "seed": "node bootstrap.js",
+    "start": "NODE_ENV=development nodemon --debug bin/www",
+    "test": "NODE_ENV=test mocha --reporter spec test/*"
+  },
+  "author": "Regi Ellis <regi@bynine.io> (http://bynine.io)",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-plugin-check-es2015-constants": "^6.3.13",
+    "babel-plugin-transform-es2015-block-scoping": "^6.3.13",
+    "chai": "^3.4.1",
+    "debug": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.1",
+    "jsdoc": "^3.4.0",
+    "jshint": "^2.9.1-rc2",
+    "mocha": "^2.3.4",
+    "morgan": "^1.6.1",
+    "nodemon": "^1.8.1",
+    "supertest": "^1.1.0",
+    "underscore": "^1.8.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "locallydb": "0.0.9"
+  }
+}

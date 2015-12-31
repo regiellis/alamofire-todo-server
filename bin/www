@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+/** APPCODA ALAMOFIRE NETOWRKING SERVER
+ *  http://www.appcoda.com/alamofire-beginner-guide/
+ *  
+ *  Rewrite of the node server used for the appcoda code
+ *  base. Removed the need for what I feel distracts from 
+ *  goals of the article.
+ */
+
+ 'use strict';
+
+ const Debug = require('debug')('alamofire');
+ const Server = require('../server');
+
+ Server.listen(process.env.SERVER_PORT || 8000, () => {
+    Debug('Alamofire server listening on port 8000');
+ });
