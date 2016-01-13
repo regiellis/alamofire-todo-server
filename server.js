@@ -25,4 +25,3 @@
  Server.use('/', API);
 
  module.exports = Server
-

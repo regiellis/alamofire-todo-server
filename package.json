@@ -6,7 +6,7 @@
   "scripts": {
     "build": "gulp compile",
     "doc": "jsdoc -r server/*.js -d doc/",
-    "seed": "node bootstrap.js",
+    "seed": "./bootstrap.js",
     "start": "NODE_ENV=development nodemon --debug bin/www",
     "test": "NODE_ENV=test mocha --reporter spec test/*"
   },
@@ -28,6 +28,7 @@
     "underscore": "^1.8.3"
   },
   "dependencies": {
+    "async": "^1.5.2",
     "body-parser": "^1.14.2",
     "express": "^4.13.3",
     "locallydb": "0.0.9"

@@ -17,6 +17,6 @@
 
  Gulp.task('compile', function() {
     return Gulp.src(source_directory)
-    .pipe(Babel({ presets: ['es2015'] }))
+    .pipe(Babel())
     .pipe(Gulp.dest(server_components))
  });

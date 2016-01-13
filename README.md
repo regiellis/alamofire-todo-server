@@ -29,8 +29,14 @@ returned. i.e. `"cid"`
 #### Ready Set Fire
 ----------------------------
 - Install Dependencies `npm install` in project root
-- Seed Database (Pre-populate Data) `npm run seed` 
+- Seed Database (Pre-populate Data) `npm run seed [database] [collection]` 
 - Run the Server `npm start`
+
+**You can also run the bootstrap file as a CLI**
+- `./bootstrap -n [database]`
+- `./bootstrap -c [collection]`
+- `./bootstrap -s`
+- `./bootstrap -a [databse] [collection]`
 
 #### Application Test 
 if you are so inclinded to make sure everything is working as it should be:

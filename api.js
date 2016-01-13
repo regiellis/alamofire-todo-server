@@ -2,8 +2,11 @@
  *  http://www.appcoda.com/alamofire-beginner-guide/
  *  
  *  rewrite of the node server used for the appcoda code
- *  base. removed the need for what i feel distracts from 
+ *  base. removed the need for what I feel distracts from 
  *  goals of the article.
+ *
+ *  Note, that none of the database calls are asynchronous,
+ *  so the event loop is blocked.
  */
 
  'use strict';
@@ -16,8 +19,8 @@
 
  const DatabasePath = new Database('./data');
  const DatabaseCollection = (process.env.NODE_ENV === 'test') 
-     ? DatabasePath.collection('Test')
-     : DatabasePath.collection('Todos');
+     ? DatabasePath.collection('test')
+     : DatabasePath.collection('todos');
 
  /**
   * Default Route
@@ -36,7 +39,7 @@
   * @return object
   */
 
- API.get('/todo', (request, response) => {
+ API.get('/todos', (request, response) => {
      response.json(DatabaseCollection.items)
  });
 
@@ -70,7 +73,7 @@
 
         result = (!DatabaseCollection.get(_todo))
         ? { status: 400, message: 'Todo could not be updated or does not exist' }
-        : { status: 200, action: DatabaseCollection.update(_todo, content) }
+        : { status: 200, updated: DatabaseCollection.update(_todo, content) }
 
         response.status(result.status).json(result);
  });
@@ -87,7 +90,7 @@
      let _temp = DatabaseCollection.get(_todo) || null;
      let result = (!DatabaseCollection.get(_todo)) 
          ? { status: 400, message: 'Todo has already been deleted or doesn\'t exist' }
-         : { status: 200, message: `Deleted`, deleted: DatabaseCollection.remove(_todo) };
+         : { status: 200, deleted: DatabaseCollection.remove(_todo) };
 
          response.status(result.status).json(result);
  });

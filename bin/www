@@ -16,3 +16,9 @@
  Server.listen(process.env.SERVER_PORT || 8000, () => {
     Debug('Alamofire server listening on port 8000');
  });
+
+ process.on('uncaughtException', function(error) {
+    console.log(`Unrecoverable Error: ${error.message}`);
+    console.log(`Error Stack: ${error.stack}`);
+    process.exit(1);
+ });
