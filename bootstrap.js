@@ -12,6 +12,7 @@
  const FileSystem = require('fs');
  
  const CLI = require('commander');
+ const Chalk = require('chalk');
  const Database = require('locallydb');
  const Debug = require('debug')('bootstrap');
 
@@ -34,13 +35,14 @@
  internals.create_container = (func) => {
    FileSystem.stat(internals.path, (error, stats) => {
      if (error) {
-       console.log(`Container doesn\'t exist, creating at ${internals.path}`);
+       console.log(Chalk.green("Container doesn\'t exist, creating at: \n"), error);
        FileSystem.mkdir(internals.path, '0777', (mkdir_error, stat) => {
          if (error) return func(mkdir_error, null);
          return func(null, stat);
        });
+       return;
      }
-     console.log("A database already exists with that name: \n", stats);
+     console.log(Chalk.red("A database already exists with that name: \n"), stats);
    });
  }
 
@@ -87,7 +89,7 @@
      : internals.create_collection(CLI.args[0].toLowerCase());
      
     process.nextTick(function() {
-      console.info('Data has been seed, ready to use');
+      console.info(Chalk.green('Data has been seed, ready to use'));
       return internals.collection.insert(internals.seed_data);
     })
  }
@@ -98,12 +100,12 @@
    internals.create_collection(CLI.args[1].toLowerCase());
    
    process.nextTick(function() {
-     console.info('Data has been seed, ready to use');
+     console.info(Chalk.green('Data has been seed, ready to use'));
      return internals.collection.insert(internals.seed_data);
    })
  } 
 
  process.on('uncaughtException', function(error) {
-   console.error("Something blew up, bailing... \n", error.stack);
+   console.error(Chalk.red(`Something blew up, bailing...\n ${error.stack}`));
    process.exit(1);
  });

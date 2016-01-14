@@ -33,6 +33,7 @@ returned. i.e. `"cid"`
 - Run the Server `npm start`
 
 **You can also run the bootstrap file as a CLI**
+- `./bootstrap -h`
 - `./bootstrap -n [database]`
 - `./bootstrap -c [collection]`
 - `./bootstrap -s`
